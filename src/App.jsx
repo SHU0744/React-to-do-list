@@ -1,5 +1,8 @@
 import { useState } from "react";
 import "./styles.css";
+import { InputTodo } from "./components/inputTodo";
+import { IncompleteTodos } from "./components/incompleteTodos";
+import { CompleteTodos } from "./components/CompleteTodos";
 
 export const App = () => {
   // 動的なブロッックをstate化
@@ -59,42 +62,17 @@ export const App = () => {
   };
   return (
     <>
-      <div className="input-area">
-        <input
-          type="text"
-          placeholder="入力"
-          value={todoText}
-          onChange={onChangeTodoText}
-        />
-        <button onClick={onClickAdd}>追加</button>
-      </div>
-      <div className="incomplete-area">
-        <p className="title">未入力</p>
-        <ul>
-          {incompleteTodos.map((todo, index) => {
-            return (
-              <div key={todo} className="list-row">
-                <li>{todo}</li>
-                <button onClick={() => onclickComplete(index)}>完了</button>
-                <button onClick={() => onclickDelete(index)}>　削除</button>
-              </div>
-            );
-          })}
-        </ul>
-      </div>
-      <div className="complete-area">
-        <p className="title">完了</p>
-        <ul>
-          {completeTodos.map((todo, index) => {
-            return (
-              <div key={todo} className="list-row">
-                <li>{todo}</li>
-                <button onClick={() => onclickBack(index)}>戻す</button>
-              </div>
-            );
-          })}
-        </ul>
-      </div>
+      <InputTodo
+        todoText={todoText}
+        onChange={onChangeTodoText}
+        onClick={onClickAdd}
+      />
+      <IncompleteTodos
+        todos={incompleteTodos}
+        onclickComplete={onclickComplete}
+        onclickDelete={onclickDelete}
+      />
+      <CompleteTodos todos={completeTodos} onclickBack={onclickBack} />
     </>
   );
 };
