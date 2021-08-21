@@ -4,8 +4,8 @@ import "./styles.css";
 export const App = () => {
   // 動的なブロッックをstate化
   const [todoText, setTodotext] = useState("");
-  const [incompleteTodos, setincompleteTodos] = useState(["test", "test2"]);
-  const [completeTodos, setcompleteTodos] = useState(["テスト"]);
+  const [incompleteTodos, setincompleteTodos] = useState([]);
+  const [completeTodos, setcompleteTodos] = useState([]);
 
   // inputに値を取得
   const onChangeTodoText = (event) => setTodotext(event.target.value);
